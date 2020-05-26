@@ -82,10 +82,11 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <!-- RELEASE_VERSION -->
-                <version>4.3.0</version>
+                <version>4.3.1</version>
                 <!-- /RELEASE_VERSION -->
                 <executions>
                     <execution>
+                        <id>server-gen</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
@@ -99,6 +100,76 @@
                             <configOptions>
                                 <java8>true</java8>
                                 <interfaceOnly>true</interfaceOnly>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>java-client-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/perfact.documentation.openapi.yml</inputSpec>
+                            <language>java</language>
+                            <library>feign</library>
+                            <output>${project.basedir}/clients/java</output>
+                            <groupId>dev.docstore.clients</groupId>
+                            <artifactId>docstore-java-feign</artifactId>
+                            <modelPackage>dev.docstore.documentation.api.model</modelPackage>
+                            <apiPackage>dev.docstore.documentation.api</apiPackage>
+                            <invokerPackage>dev.docstore.documentation</invokerPackage>
+                            <gitUserId>arne-kroeger</gitUserId>
+                            <gitRepoId>docstore-client-java-feign</gitRepoId>
+                            <configOptions>
+                                <java8>true</java8>
+                                <artifactUrl>https://github.com/arne-kroeger/docstore-client-java-feign</artifactUrl>
+                                <artifactDescription>Java Feign client for docstore server</artifactDescription>
+                                <scmConnection>scm:git:https://github.com/arne-kroeger/docstore-client-java-feign.git</scmConnection>
+                                <scmDeveloperConnection>scm:git:https://github.com/arne-kroeger/docstore-client-java-feign.git</scmDeveloperConnection>
+                                <scmUrl>https://github.com/arne-kroeger/docstore-client-java-feign</scmUrl>
+                                <licenseName>GNU General Public License v3.0</licenseName>
+                                <licenseUrl>https://github.com/arne-kroeger/docstore/blob/master/LICENSE</licenseUrl>
+                                <developerName>Arne Kröger</developerName>
+                                <developerEmail>contact@docstore.dev</developerEmail>
+                                <developerOrganization>docstore</developerOrganization>
+                                <organizationUrl>https://docstore.dev</organizationUrl>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>php-client-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/perfact.documentation.openapi.yml</inputSpec>
+                            <output>${project.basedir}/clients/php</output>
+                            <language>php</language>
+                            <gitUserId>arne-kroeger</gitUserId>
+                            <gitRepoId>docstore-client-php</gitRepoId>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>python-client-gen</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>install</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/perfact.documentation.openapi.yml</inputSpec>
+                            <output>${project.basedir}/clients/python</output>
+                            <language>python</language>
+                            <gitUserId>arne-kroeger</gitUserId>
+                            <gitRepoId>docstore-client-python</gitRepoId>
+                            <appDescription>The python client for docstore server</appDescription>
+                            <configOptions>
+                                <appDescription>The python client for docstore server</appDescription>
+                                <appDescriptionWithNewLines>The python client for docstore server</appDescriptionWithNewLines>
+                                <packageName>docstore_python_client</packageName>
+                                <infoName>Arne</infoName>
+                                <infoEmail>contact@docstore.dev</infoEmail>
                             </configOptions>
                         </configuration>
                     </execution>
