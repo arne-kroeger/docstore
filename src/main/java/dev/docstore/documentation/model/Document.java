@@ -41,6 +41,7 @@ public class Document {
     @Column
     private String uuid;
     private String title;
+    private DocumentStatus status;
 
     private LocalDateTime createDate;
     private LocalDateTime latestUpdateReceived;
