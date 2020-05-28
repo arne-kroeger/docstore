@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @ComponentScan(basePackages = {"dev.docstore"})
 @EnableScheduling
-public class PerfActDocumentationApp {
+public class DocStoreServer {
     
     public static void main(String[] args) {
-        SpringApplication.run(PerfActDocumentationApp.class, args);
+        SpringApplication.run(DocStoreServer.class, args);
     }
 
 }
