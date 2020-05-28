@@ -28,6 +28,7 @@ import dev.docstore.documentation.api.model.Document;
 import dev.docstore.documentation.api.model.Space;
 import dev.docstore.documentation.api.model.TemplateData;
 import dev.docstore.documentation.api.model.TemplateVariable;
+import dev.docstore.documentation.model.DocumentStatus;
 import dev.docstore.documentation.model.Environment;
 import dev.docstore.documentation.model.Tag;
 import dev.docstore.documentation.model.Template;
@@ -102,6 +103,7 @@ public class DocumentController implements DocumentApi {
         storeDocument.getTags().addAll(createOrUpdateTags(givenDocument.getTags()));
         storeDocument.setCreateDate(LocalDateTime.now());
         storeDocument.setLatestUpdateReceived(LocalDateTime.now());
+        storeDocument.setStatus(DocumentStatus.ACTIVE);
 
         if (latestVersion == null || !latestVersion.getTitle().equals(storeDocument.getTitle())
                 || !latestVersion.getBody().equals(storeDocument.getBody())
@@ -233,7 +235,7 @@ public class DocumentController implements DocumentApi {
         document.setTags(convertTags(storedDocument.getTags()));
         document.setUuid(storedDocument.getUuid());
         document.setLatestChange(storedDocument.getCreateDate().atOffset(OffsetDateTime.now().getOffset()));
-
+        
         if (storedDocument.getLatestUpdateReceived() != null) {
             document.setLatestUpdate(storedDocument.getLatestUpdateReceived().atOffset(OffsetDateTime.now().getOffset()));
         }
